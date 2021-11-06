@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1= title
+  
+  div(class="container-fluid")
+        div(class="row")
+            -
+                let vehicles = [
+                    {
+                        "name": "GMC",
+                        "fuel": "Petrol",
+                        "wheels": "4"                        
+                    },
+                    {
+                        "name": "Honda",
+                        "fuel": "Diesel",
+                        "wheels": "4"
+                    },
+                    {
+                        "name": "Toyota",
+                        "fuel": "Petrol",
+                        "wheels": "4"
+                    },                   
+                ]
+            each v, index in vehicles 
+                div(class="col-sm-2" onclick=`buy(${index})`) #{v.name} #{v.fuel} #{v.wheels}
+            script.
+                function buy(itemNo){
+                    alert(`You purchased Item ${itemNo+1}`)
+                }
