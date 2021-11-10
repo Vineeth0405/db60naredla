@@ -1,7 +1,7 @@
 var Vehicle = require('../models/vehicle'); 
  
 // List of all Vehicles 
-exports.vehcile_list = async function(req, res) { 
+exports.vehicle_list = async function(req, res) { 
     try{ 
         let vehicles = await Vehicle.find(); 
         res.send(vehicles); 
@@ -13,21 +13,46 @@ exports.vehcile_list = async function(req, res) {
 }; 
  
 // for a specific Vehcile. 
-exports.vehcile_detail = function(req, res) { 
+exports.vehicle_detail = function(req, res) { 
     res.send('NOT IMPLEMENTED: Vehcile detail: ' + req.params.id); 
 }; 
  
 // Handle vehcile create on POST. 
-exports.vehcile_create_post = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Vehcile create POST'); 
+exports.vehicle_create_post = async function(req, res) { 
+    console.log(req.body) 
+    let document = new Vehicle(); 
+    document.name = req.body.name; 
+    document.fuel = req.body.fuel; 
+    document.wheels = req.body.wheels; 
+    try{ 
+        let result = await document.save(); 
+        res.send(result); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    } 
 }; 
  
 // Handle vehcile delete form on DELETE. 
-exports.vehcile_delete = function(req, res) { 
+exports.vehicle_delete = function(req, res) { 
     res.send('NOT IMPLEMENTED: Vehcile delete DELETE ' + req.params.id); 
 }; 
  
 // Handle vehcile update form on PUT. 
-exports.vehcile_update_put = function(req, res) { 
+exports.vehicle_update_put = function(req, res) { 
     res.send('NOT IMPLEMENTED: Vehcile update PUT' + req.params.id); 
+}; 
+
+// VIEWS 
+// Handle a show all view 
+exports.vehicle_view_all_Page = async function(req, res) { 
+    try{ 
+        let vehicles = await Vehicle.find(); 
+        res.render('vehicles', { title: 'Vehicle Search Results', results: vehicles }); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
 }; 

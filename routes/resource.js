@@ -13,19 +13,19 @@ router.get('/', api_controller.api);
 /// vehicle ROUTES /// 
  
 // POST request for creating a vehicle.  
-router.post('/vehicles', vehicle_controller.vehcile_create_post); 
+router.post('/vehicles', vehicle_controller.vehicle_create_post); 
  
 // DELETE request to delete vehicle. 
-router.delete('/vehicles/:id', vehicle_controller.vehcile_delete); 
+router.delete('/vehicles/:id', vehicle_controller.vehicle_delete); 
  
 // PUT request to update vehicle. 
 router.put('/vehicles/:id', 
-vehicle_controller.vehcile_update_put); 
+vehicle_controller.vehicle_update_put); 
  
 // GET request for one vehicle. 
-router.get('/vehicles/:id', vehicle_controller.vehcile_detail); 
+router.get('/vehicles/:id', vehicle_controller.vehicle_detail); 
  
 // GET request for list of all vehicle items. 
-router.get('/vehicles', vehicle_controller.vehcile_list); 
+router.get('/vehicles', vehicle_controller.vehicle_list); 
  
 module.exports = router;
