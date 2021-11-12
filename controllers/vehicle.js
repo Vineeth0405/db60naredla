@@ -47,8 +47,24 @@ exports.vehicle_delete = function(req, res) {
 }; 
  
 // Handle vehcile update form on PUT. 
-exports.vehicle_update_put = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Vehcile update PUT' + req.params.id); 
+exports.vehicle_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+    ${JSON.stringify(req.body)}`) 
+        try { 
+            let toUpdate = await Vehicle.findById( req.params.id) 
+            // Do updates of properties 
+            if(req.body.name)  
+                   toUpdate.name = req.body.name; 
+            if(req.body.fuel) toUpdate.fuel = req.body.fuel; 
+            if(req.body.wheels) toUpdate.wheels = req.body.wheels; 
+            let result = await toUpdate.save(); 
+            console.log("Sucess " + result) 
+            res.send(result) 
+        } catch (err) { 
+            res.status(500) 
+            res.send(`{"error": ${err}: Update for id ${req.params.id} 
+    failed`); 
+        } 
 }; 
 
 // VIEWS 
