@@ -10,4 +10,7 @@ router.get('/detail', vehicle_controllers.vehicle_view_one_Page);
  
 /* GET create vehicle page */ 
 router.get('/create', vehicle_controllers.vehicle_create_Page); 
+
+/* GET create update page */ 
+router.get('/update',vehicle_controllers.vehicle_update_Page);
 module.exports = router;
