@@ -8,8 +8,10 @@ block content
             -
                 let vehicles = results
             each v, index in vehicles 
-                div(class="col-sm-2" onclick=`buy(${index})`) #{v.name} #{v.fuel} #{v.wheels}
+                - let destination = `dispatch(\"/vehicles/update?id=${v._id}\")`
+                div(class="row-sm-2", class="m-1") Item #{v.name} #{v.fuel} #{v.wheels}
+                    button.btn(class="btn-primary ms-1", onclick= destination) Update
             script.
-                function buy(itemNo){
-                    alert(`You purchased Item ${itemNo+1}`)
+                function dispatch(path){
+                    window.location.href=path
                 }
