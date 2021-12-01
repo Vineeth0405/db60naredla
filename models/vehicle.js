@@ -5,7 +5,11 @@ const vehicleSchema = mongoose.Schema({
      minlength: 3,
  },
  fuel: String, 
- wheels: Number 
+ wheels: {
+     type: Number,
+     min: 2,
+     max: 6
+ } 
 }) 
  
 module.exports = mongoose.model("Vehicle", 
